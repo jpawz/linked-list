@@ -84,15 +84,13 @@ class LinkedList {
     }
 
     let node = this.head;
-    while (node.nextNode) {
+    while (node) {
       if (node.value === value) {
         return true;
       }
       node = node.nextNode;
     }
-    if (node.value === value) {
-      return true;
-    }
+
     return false;
   }
 
