@@ -2,31 +2,31 @@ import { Node } from "./node";
 
 class LinkedList {
   constructor() {
-    this.head = null;
-    this.tail = null;
+    this.headNode = null;
+    this.tailNode = null;
     this.length = 0;
   }
 
   append(value) {
     const newNode = new Node(value);
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = this.head;
+    if (!this.headNode) {
+      this.headNode = newNode;
+      this.tailNode = this.headNode;
     } else {
-      this.tail.nextNode = newNode;
-      this.tail = newNode;
+      this.tailNode.nextNode = newNode;
+      this.tailNode = newNode;
     }
     this.length++;
   }
 
   prepend(value) {
     const newNode = new Node(value);
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = this.head;
+    if (!this.headNode) {
+      this.headNode = newNode;
+      this.tailNode = this.headNode;
     } else {
-      newNode.nextNode = this.head;
-      this.head = newNode;
+      newNode.nextNode = this.headNode;
+      this.headNode = newNode;
     }
     this.length++;
   }
@@ -36,18 +36,18 @@ class LinkedList {
   }
 
   head() {
-    return this.head;
+    return this.headNode;
   }
 
   tail() {
-    return this.tail;
+    return this.tailNode;
   }
 
   at(index) {
     if (index > this.length || index < 0) {
       return null;
     }
-    let node = this.head;
+    let node = this.headNode;
     for (let i = 0; i < index; i++) {
       node = node.nextNode;
     }
@@ -55,11 +55,11 @@ class LinkedList {
   }
 
   pop() {
-    if (!this.head) {
+    if (!this.headNode) {
       return null;
     }
 
-    let node = this.head;
+    let node = this.headNode;
     let previousNode = null;
     while (node.nextNode) {
       previousNode = node;
@@ -68,22 +68,22 @@ class LinkedList {
 
     if (previousNode) {
       previousNode.nextNode = null;
-      this.tail = previousNode;
+      this.tailNode = previousNode;
     } else {
-      this.head = null;
-      this.tail = null;
+      this.headNode = null;
+      this.tailNode = null;
     }
 
     this.length--;
-    return tail;
+    return this.tailNode;
   }
 
   contains(value) {
-    if (!this.head) {
+    if (!this.headNode) {
       return false;
     }
 
-    let node = this.head;
+    let node = this.headNode;
     while (node) {
       if (node.value === value) {
         return true;
@@ -95,12 +95,12 @@ class LinkedList {
   }
 
   find(value) {
-    if (!this.head) {
+    if (!this.headNode) {
       return null;
     }
 
     let index = 0;
-    let node = this.head;
+    let node = this.headNode;
     while (node) {
       if (node.value === value) {
         return index;
@@ -114,7 +114,7 @@ class LinkedList {
 
   toString() {
     let string = "";
-    let node = this.head;
+    let node = this.headNode;
     while (node) {
       string += `(${node.value}) -> `;
       node = node.nextNode;
@@ -131,8 +131,8 @@ class LinkedList {
     const newNode = new Node(value);
 
     if (index === 0) {
-      newNode.nextNode = this.head;
-      this.head = newNode;
+      newNode.nextNode = this.headNode;
+      this.headNode = newNode;
     } else {
       const nodeBefore = this.at(index - 1);
       newNode.nextNode = nodeBefore.nextNode;
@@ -140,7 +140,7 @@ class LinkedList {
     }
 
     if (index === this.length) {
-      this.tail = newNode;
+      this.tailNode = newNode;
     }
     this.length++;
     return true;
@@ -154,17 +154,17 @@ class LinkedList {
     let nodeBefore, nodeToRemove;
     if (index === 0) {
       nodeBefore = null;
-      nodeToRemove = this.head;
-      this.head = this.head.nextNode;
+      nodeToRemove = this.headNode;
+      this.headNode = this.headNode.nextNode;
       if (this.length === 1) {
-        this.tail = null;
+        this.tailNode = null;
       }
     } else {
       nodeBefore = this.at(index - 1);
       nodeToRemove = nodeBefore.nextNode;
       nodeBefore.nextNode = nodeToRemove.nextNode;
       if (index === this.length - 1) {
-        this.tail = nodeBefore;
+        this.tailNode = nodeBefore;
       }
     }
 
