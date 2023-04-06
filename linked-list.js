@@ -95,4 +95,22 @@ class LinkedList {
     }
     return false;
   }
+
+  find(value) {
+    if (!this.head) {
+      return null;
+    }
+
+    let index = 0;
+    let node = this.head;
+    while (node) {
+      if (node.value === value) {
+        return index;
+      }
+      node = node.nextNode;
+      index++;
+    }
+
+    return null;
+  }
 }
