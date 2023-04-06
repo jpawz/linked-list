@@ -53,4 +53,28 @@ class LinkedList {
     }
     return node;
   }
+
+  pop() {
+    if (!this.head) {
+      return null;
+    }
+
+    let node = this.head;
+    let previousNode = null;
+    while (node.nextNode) {
+      previousNode = node;
+      node = node.nextNode;
+    }
+
+    if (previousNode) {
+      previousNode.nextNode = null;
+      this.tail = previousNode;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
+
+    this.length--;
+    return tail;
+  }
 }
