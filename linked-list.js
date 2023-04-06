@@ -42,4 +42,15 @@ class LinkedList {
   tail() {
     return this.tail;
   }
+
+  at(index) {
+    if (index > this.length || index < 0) {
+      return null;
+    }
+    let node = this.head;
+    for (let i = 0; i < index; i++) {
+      node = node.nextNode;
+    }
+    return node;
+  }
 }
