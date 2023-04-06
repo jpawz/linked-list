@@ -122,4 +122,27 @@ class LinkedList {
     string += "null";
     return string;
   }
+
+  insertAt(value, index) {
+    if (index < 0 || index > this.length) {
+      throw new Error("Invalid index");
+    }
+
+    const newNode = new Node(value);
+
+    if (index === 0) {
+      newNode.nextNode = this.head;
+      this.head = newNode;
+    } else {
+      const nodeBefore = this.at(index - 1);
+      newNode.nextNode = nodeBefore.nextNode;
+      nodeBefore.nextNode = newNode;
+    }
+
+    if (index === this.length) {
+      this.tail = newNode;
+    }
+    this.length++;
+    return true;
+  }
 }
