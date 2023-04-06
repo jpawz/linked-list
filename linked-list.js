@@ -145,4 +145,30 @@ class LinkedList {
     this.length++;
     return true;
   }
+
+  removeAt(index) {
+    if (index < 0 || index >= this.length) {
+      throw new Error("Invalid index.");
+    }
+
+    let nodeBefore, nodeToRemove;
+    if (index === 0) {
+      nodeBefore = null;
+      nodeToRemove = this.head;
+      this.head = this.head.nextNode;
+      if (this.length === 1) {
+        this.tail = null;
+      }
+    } else {
+      nodeBefore = this.at(index - 1);
+      nodeToRemove = nodeBefore.nextNode;
+      nodeBefore.nextNode = nodeToRemove.nextNode;
+      if (index === this.length - 1) {
+        this.tail = nodeBefore;
+      }
+    }
+
+    this.length--;
+    return true;
+  }
 }
