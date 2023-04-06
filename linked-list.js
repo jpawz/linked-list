@@ -34,4 +34,12 @@ class LinkedList {
   size() {
     return this.length;
   }
+
+  head() {
+    return this.head;
+  }
+
+  tail() {
+    return this.tail;
+  }
 }
